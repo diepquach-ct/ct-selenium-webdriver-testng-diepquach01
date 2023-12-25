@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,14 +10,13 @@ import java.util.List;
 
 public class CommonFunctions {
     protected WebDriver driver; //protected: có thể được truy cập từ các lớp con.
-    private WebDriverWait wait;
-
+    protected WebDriverWait wait;
 
 
     //tạo constructor
     public CommonFunctions(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 10); // Thời gian chờ tối đa là 10 giây, bạn có thể điều chỉnh nếu cần thiết
+        this.wait = new WebDriverWait(driver, 20); // Thời gian chờ tối đa là 10 giây, bạn có thể điều chỉnh nếu cần thiết
 
     }
 
@@ -231,11 +231,7 @@ public class CommonFunctions {
         return year >= 2000 && year <= 2023;
     }
 
-    // Helper method to get actual error message
-    public String getActualErrorMessage(By locator) {
-        WebElement errorElement = driver.findElement(locator);
-        return errorElement.getText();
-    }
+
 }
 
 

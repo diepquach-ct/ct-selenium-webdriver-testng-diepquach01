@@ -1,8 +1,10 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 
 public class UpdateProfileFunctions extends CommonFunctions {
@@ -118,33 +120,18 @@ public class UpdateProfileFunctions extends CommonFunctions {
         clickElement(By.xpath("//button[contains(text(), 'Lưu thay đổi')]"));
 
     }
+    public void verifyErrorMessage_BlankFullName(String errMgsExpected){
+        WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(@class, 'mocked-styled-11') and text()='Vui lòng nhập tên.']")));
+        String mgsError = errorElement.getText();
+        Assert.assertEquals(errMgsExpected, mgsError);
+    }
 
-
-    public void assertErrorMessageDisplayed(String fieldXPath, String expectedErrorMessage) {
-        //-------------Hồ Sơ cá nhân-------------------------//
-        clickElement(By.xpath("//*[@name='full_name']"));
-        clearInputField(By.xpath("//*[@name='full_name']"));
-        clickElement(By.xpath("//button[contains(text(), 'Lưu thay đổi')]"));
-
-        By errorLocator = By.xpath(fieldXPath + "//p[contains(@class, 'mocked-styled-11') and text()='Vui lòng nhập tên.']");
-        String actualErrorMessage = getActualErrorMessage(errorLocator);
-        // Comparing the error message
-        if (expectedErrorMessage.equals(actualErrorMessage)) {
-            // Nếu thông báo lỗi = expect, kiểm tra xem phần tử có hiển thị hay không
-            WebElement errorElement = driver.findElement(errorLocator);
-
-            // Kiểm tra xem phần tử có hiển thị trên trang hay không
-            if (errorElement.isDisplayed()) {
-                System.out.println("Error message is displayed for field: " + fieldXPath);
-            } else {
-                throw new AssertionError("Error message is expected to be displayed for field: " + fieldXPath
-                        + ", but the error element is not visible on the page.");
-            }
-        } else {
-            // Nếu thông báo lỗi không khớp với dự kiến, ném một AssertionError
-            throw new AssertionError("Error message does not match for field: " + fieldXPath
-                    + ". Expected: " + expectedErrorMessage + ", Actual: " + actualErrorMessage);
-        }
+    public void verifyErrorMessage_FullName(String errMgsExpected) {
+        WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Lưu thay đổi')]//preceding-sibling::div//div[contains(@class,'error')]/div")));
+        // getText() để lấy văn bản của phần tử
+        String mgsError = errorElement.getText();
+        // assertEquals() để kiểm tra văn bản
+        Assert.assertEquals(errMgsExpected, mgsError);
     }
 }
 
