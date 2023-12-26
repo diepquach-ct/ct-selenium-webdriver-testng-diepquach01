@@ -19,10 +19,10 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-//    @AfterMethod
-//    public void tearDown() { //1. Resource Cleanup, 2. Logging and Reporting
-//        if (driver != null) { //driver !=null để không bị lỗi NullPointerException
-//            driver.quit();
-//        }
-//    }
+    @AfterMethod
+    public void tearDown() { //1. Resource Cleanup, 2. Logging and Reporting
+        if (driver != null) { //driver !=null để không bị lỗi NullPointerException
+            driver.quit();
+        }
+    }
 }

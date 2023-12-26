@@ -120,19 +120,48 @@ public class UpdateProfileFunctions extends CommonFunctions {
         clickElement(By.xpath("//button[contains(text(), 'Lưu thay đổi')]"));
 
     }
+
     public void verifyErrorMessage_BlankFullName(String errMgsExpected){
-        WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(@class, 'mocked-styled-11') and text()='Vui lòng nhập tên.']")));
+        String xpath = "//*[@name='full_name']//parent::div/following-sibling::p";
+        WebElement errorElement = getElementByXPath(xpath);
         String mgsError = errorElement.getText();
         Assert.assertEquals(errMgsExpected, mgsError);
     }
 
-    public void verifyErrorMessage_FullName(String errMgsExpected) {
-        WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Lưu thay đổi')]//preceding-sibling::div//div[contains(@class,'error')]/div")));
-        // getText() để lấy văn bản của phần tử
-        String mgsError = errorElement.getText();
-        // assertEquals() để kiểm tra văn bản
-        Assert.assertEquals(errMgsExpected, mgsError);
+    public void verifySuccessfulProfileUpdate (String successMgsExpected) {
+        String xpath ="//button[contains(text(),'Lưu thay đổi')]//preceding-sibling::div//div[contains(@class,'success')]/div";
+        WebElement successElement = getElementByXPath(xpath);
+        // Get text from the element to check the expected text.
+        String mgsSuccess = successElement.getText();
+        // Check if the text matches the expected one using Assert from TestNG.
+        Assert.assertEquals(successMgsExpected, mgsSuccess);
     }
+   public void verifyErrorMessage_FullName(String errMgsExpected) {
+        String xpath ="//button[contains(text(),'Lưu thay đổi')]//preceding-sibling::div//div[contains(@class,'error')]/div";
+        WebElement errorElement = getElementByXPath(xpath);
+       // Get text from the element to check the expected text.
+        String mgsError = errorElement.getText();
+       // Check if the text matches the expected one using Assert from TestNG.
+        Assert.assertEquals(errMgsExpected, mgsError);
+   }
+
+   public void verifyErrorMessage_LimitFullName (String errMgsExpected) {
+        String xpath = "//button[contains(text(),'Lưu thay đổi')]//preceding-sibling::div//div[contains(@class,'error')]/div";
+        WebElement errorElement = getElementByXPath(xpath);
+       // Get text from the element to check the expected text.
+        String mgsError = errorElement.getText();
+       // Check if the text matches the expected one using Assert from TestNG.
+        Assert.assertEquals(errMgsExpected, mgsError);
+   }
+
+   public void verifyErrorMessage_OverLimitDescription (String errMgsExpected) {
+       String xpath = "//textarea[@name='description']//parent::div/following-sibling::p";
+       WebElement errorElement = getElementByXPath(xpath);
+       // Get text from the element to check the expected text.
+       String mgsError = errorElement.getText();
+       // Check if the text matches the expected one using Assert from TestNG.
+       Assert.assertEquals(errMgsExpected, mgsError);
+   }
 }
 
 

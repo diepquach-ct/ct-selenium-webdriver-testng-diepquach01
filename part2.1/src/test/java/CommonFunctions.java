@@ -1,5 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,6 +18,12 @@ public class CommonFunctions {
         this.wait = new WebDriverWait(driver, 20); // Thời gian chờ tối đa là 10 giây, bạn có thể điều chỉnh nếu cần thiết
 
     }
+
+    public WebElement getElementByXPath(String xpath) {
+        // Method WebDriverWait để chờ đến khi một phần tử xuất hiện theo đường dẫn XPath và trả về nó.
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+    }
+
 
     public void openApplication(String url) {
         if (driver != null) {
@@ -233,7 +238,6 @@ public class CommonFunctions {
 
 
 }
-
 
 
 
