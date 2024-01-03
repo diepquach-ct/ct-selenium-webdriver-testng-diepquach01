@@ -15,7 +15,7 @@ public class CommonFunctions {
     //tạo constructor
     public CommonFunctions(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 20); // Thời gian chờ tối đa là 10 giây, bạn có thể điều chỉnh nếu cần thiết
+        this.wait = new WebDriverWait(driver, 20); // Thời gian chờ tối đa là 20 giây
 
     }
 
@@ -37,12 +37,16 @@ public class CommonFunctions {
     public void closeApplication() {
         if (driver != null) { //driver !=null để không bị lỗi NullPointerException
             driver.quit();
+        } else {
+            System.out.println("Driver is null. Cannot open application");
         }
     }
 
     public void maximizeWindow() {
         if (driver != null) { //driver !=null để không bị lỗi NullPointerException
             driver.manage().window().maximize();
+        } else {
+            System.out.println("Driver is null. Cannot open application");
         }
     }
 

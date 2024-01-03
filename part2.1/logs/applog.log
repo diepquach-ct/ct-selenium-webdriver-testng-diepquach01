@@ -1,0 +1,5 @@
+[INFO] 04-01-2024 00:09:32 [main] LogUtils - Run: verifySuccessfulProfileUpdate
+[ERROR] 04-01-2024 00:10:27 [main] LogUtils - Run: verifyBlankFullNameField
+[ERROR] 04-01-2024 00:11:12 [main] LogUtils - Run: verifyNumberFullNameField
+[ERROR] 04-01-2024 00:11:57 [main] LogUtils - Run: verifyErrorMessageLimitFullName
+[ERROR] 04-01-2024 00:12:58 [main] LogUtils - Run: verifyErrorMessage_OverLimitDescription

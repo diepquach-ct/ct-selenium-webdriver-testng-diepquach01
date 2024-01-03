@@ -121,6 +121,15 @@ public class UpdateProfileFunctions extends CommonFunctions {
 
     }
 
+    public void verifySuccessfulProfileUpdate (String successMgsExpected) {
+        String xpath ="//button[contains(text(),'Lưu thay đổi')]//preceding-sibling::div//div[contains(@class,'success')]/div";
+        WebElement successElement = getElementByXPath(xpath);
+        // Get text from the element to check the expected text.
+        String mgsSuccess = successElement.getText();
+        // Check if the text matches the expected one using Assert from TestNG.
+        Assert.assertEquals(successMgsExpected, mgsSuccess); //expected results:successMgsExpected, actual results: mgsSuccess
+    }
+
     public void verifyErrorMessage_BlankFullName(String errMgsExpected){
         String xpath = "//*[@name='full_name']//parent::div/following-sibling::p";
         WebElement errorElement = getElementByXPath(xpath);
@@ -128,14 +137,6 @@ public class UpdateProfileFunctions extends CommonFunctions {
         Assert.assertEquals(errMgsExpected, mgsError);
     }
 
-    public void verifySuccessfulProfileUpdate (String successMgsExpected) {
-        String xpath ="//button[contains(text(),'Lưu thay đổi')]//preceding-sibling::div//div[contains(@class,'success')]/div";
-        WebElement successElement = getElementByXPath(xpath);
-        // Get text from the element to check the expected text.
-        String mgsSuccess = successElement.getText();
-        // Check if the text matches the expected one using Assert from TestNG.
-        Assert.assertEquals(successMgsExpected, mgsSuccess);
-    }
    public void verifyErrorMessage_FullName(String errMgsExpected) {
         String xpath ="//button[contains(text(),'Lưu thay đổi')]//preceding-sibling::div//div[contains(@class,'error')]/div";
         WebElement errorElement = getElementByXPath(xpath);

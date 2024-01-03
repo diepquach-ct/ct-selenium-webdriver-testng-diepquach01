@@ -2,10 +2,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import ultilities.LogUtils;
 
 public class UserProfileTest extends BaseTest {
     @Test
     public void TC_01_verifySuccessfulProfileUpdate() {
+        LogUtils.info("Run: verifySuccessfulProfileUpdate");
         CommonFunctions commonFunctions = new CommonFunctions(driver);
         Login login = new Login(driver);
         OTPScreen otpScreen = new OTPScreen(driver);
@@ -63,6 +65,7 @@ public class UserProfileTest extends BaseTest {
 
     @Test
     public void TC_02_verifyBlankFullNameField() {
+        LogUtils.error("Run: verifyBlankFullNameField");
         CommonFunctions commonFunctions = new CommonFunctions(driver);
         Login login = new Login(driver);
         OTPScreen otpScreen = new OTPScreen(driver);
@@ -110,6 +113,7 @@ public class UserProfileTest extends BaseTest {
 
     @Test
     public void TC_03_verifyNumberFullNameField() {
+        LogUtils.error("Run: verifyNumberFullNameField");
         CommonFunctions commonFunctions = new CommonFunctions(driver);
         Login login = new Login(driver);
         OTPScreen otpScreen = new OTPScreen(driver);
@@ -160,6 +164,7 @@ public class UserProfileTest extends BaseTest {
 
     @Test
     public void TC_04_verifyErrorMessageLimitFullName() {
+        LogUtils.error("Run: verifyErrorMessageLimitFullName");
         CommonFunctions commonFunctions = new CommonFunctions(driver);
         Login login = new Login(driver);
         OTPScreen otpScreen = new OTPScreen(driver);
@@ -210,6 +215,7 @@ public class UserProfileTest extends BaseTest {
 
     @Test
     public void TC_05_verifyErrorMessage_OverLimitDescription() {
+        LogUtils.error("Run: verifyErrorMessage_OverLimitDescription");
         CommonFunctions commonFunctions = new CommonFunctions(driver);
         Login login = new Login(driver);
         OTPScreen otpScreen = new OTPScreen(driver);
@@ -250,9 +256,9 @@ public class UserProfileTest extends BaseTest {
         //9. Enter description field
         commonFunctions.enterText(By.xpath("//textarea[@name='description']"), "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of");
 
-        //9. Click Save button
+        //10. Click Save button
         commonFunctions.clickElement(By.xpath("//button[contains(text(), 'Lưu thay đổi')]"));
-        // 7. Verify description field validation
+        //11. Verify description field validation
         updateProfile.verifyErrorMessage_OverLimitDescription("Giới thiệu không được vượt quá 60 từ.");
         //Close the application
         commonFunctions.closeApplication();

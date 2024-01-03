@@ -16,7 +16,7 @@ public class BaseTest {
         System.setProperty("webdriver.gecko.driver", projectPath + "/drivers/geckodriver") ;
         // Khởi tạo trình duyệt Firefox
         driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); // ko can biet element thực thi chưa, chỉ cần xong wait là sẽ start step tiếp theo
     }
 
     @AfterMethod
